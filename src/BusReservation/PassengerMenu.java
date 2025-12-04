@@ -12,29 +12,33 @@ public class PassengerMenu {
 
     public static void start(User user) {
 
-        while (true) {
-            System.out.println("\n--- PASSENGER MENU ---");
-            System.out.println("1. Search Bus");
-            System.out.println("2. My Bookings");
-            System.out.println("3. Logout");
-            System.out.print("Choice: ");
+    while (true) {
+        System.out.println("\n--- PASSENGER MENU ---");
+        System.out.println("1. Search Bus");
+        System.out.println("2. My Bookings");
+        System.out.println("3. Logout");
+        System.out.print("Choice: ");
 
-            String line = sc.nextLine();
-            int c;
-            try {
-                c = Integer.parseInt(line);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Enter number.");
-                continue;
-            }
+        int c = -1;
 
-            switch (c) {
-                case 1 -> searchBus(user);
-                case 2 -> bookingService.displayUser(user.username);
-                default -> { return; }
+        try {
+            c = Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter a number only.");
+            continue; 
+        }
+
+        switch (c) {
+            case 1 -> searchBus(user);
+            case 2 -> bookingService.displayUser(user.username);
+            case 3 -> {
+                return;
             }
+            default -> System.out.println("Invalid choice! Please select 1-3 only.");
         }
     }
+}
+
 
     static void searchBus(User user) {
         boolean continueBooking = true;
